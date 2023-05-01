@@ -224,3 +224,22 @@ function entityTypeHasField($entity_type = 'node', $field_name) {
 
   return FALSE;
 }
+
+
+/**
+ * Implements hook_views_data().
+ */
+
+function islandora_group_views_data() {
+   $data = [];
+
+   $data['views']['result_with_group'] = [
+    'title' => t('Result summary works with Access Control by Groups'),
+    'help' => t('Shows result summary works with Access Control by Groups, for example the items per page.'),
+    'area' => [
+      'id' => 'result_with_group',
+    ],
+  ];
+  return $data;
+}
+
