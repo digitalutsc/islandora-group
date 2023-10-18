@@ -31,6 +31,7 @@ class ConfirmCollectionAccessTermsForm extends ConfirmFormBase {
         // get children nodes
         $query = \Drupal::entityQuery('node')
             ->condition('status', 1)
+            ->accessCheck(TRUE)
             ->condition('field_member_of', $this->id);
         $childrenNIDs = $query->execute();
 

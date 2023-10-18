@@ -174,6 +174,7 @@ class NodeAccessControlForm extends FormBase {
         if (entityTypeHasField("node", "field_part_of")) { 
             $query = \Drupal::entityQuery('node')
                 ->condition('status', 1)
+                ->accessCheck(TRUE)
                 ->condition('field_part_of', $node->id());
             $part_of_NIDs = $query->execute();
         }
@@ -186,6 +187,7 @@ class NodeAccessControlForm extends FormBase {
             $member_of_NIDs= [];
             $query = \Drupal::entityQuery('node')
                 ->condition('status', 1)
+                ->accessCheck(TRUE)
                 ->condition('field_member_of', $node->id());
             $member_of_NIDs = $query->execute();
 
