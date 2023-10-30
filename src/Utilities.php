@@ -734,6 +734,7 @@ class Utilities
     $group_ids = array();
     $ids = \Drupal::entityQuery('group_relationship')
       ->condition('entity_id', $nid)
+      ->accessCheck(TRUE)
       ->execute();
 
     $relations = \Drupal\group\Entity\GroupRelationship::loadMultiple($ids);
@@ -753,6 +754,7 @@ class Utilities
     $group_ids = array();
     $ids = \Drupal::entityQuery('group_relationship')
       ->condition('entity_id', $mid)
+      ->accessCheck(TRUE)
       ->execute();
 
     $relations = \Drupal\group\Entity\GroupRelationship::loadMultiple($ids);
