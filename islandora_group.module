@@ -212,7 +212,7 @@ function islandora_group_batch_finished($success, $results, $operations) {
  * @return bool
  *   Returns a TRUE if the entity type has the field.
  */
-function entityTypeHasField($entity_type = 'node', $field_name) {
+function entityTypeHasField($entity_type, $field_name) {
   $bundles = \Drupal::service('entity_type.bundle.info')->getBundleInfo($entity_type);
 
   foreach($bundles as $bundle => $label) {
