@@ -717,7 +717,7 @@ class Utilities
     $backtrace = debug_backtrace();
     $redudent = false;
     while ($frame = next($backtrace)) {
-      if ($frame['class'] === "Drupal\\views_bulk_operations\\Action\\ViewsBulkOperationsActionBase"
+      if (isset($frame['class']) === true && $frame['class'] === "Drupal\\views_bulk_operations\\Action\\ViewsBulkOperationsActionBase"
         && $frame['function'] === "executeMultiple") {
         $redudent = true;
         break;
