@@ -313,7 +313,7 @@ class NodeAccessControlForm extends FormBase {
 
 
         // handle override
-        if ($form_state->getValues()['access-control']['media']['<strong>Override</strong>'] == true) {
+        if (isset($form_state->getValues()['access-control']['media']['<strong>Override</strong>']) && $form_state->getValues()['access-control']['media']['<strong>Override</strong>'] == true) {
             // Override the access control for already set media
             $override_media = array_values(array_filter($form_state->getValues()['access-control']['media']['not-access-control']));
             foreach ($override_media as $omid) {
@@ -350,7 +350,7 @@ class NodeAccessControlForm extends FormBase {
         }
 
         // for override children nodes
-        if ($form_state->getValues()['access-control']['children-nodes']['<strong>Override</strong>'] == true) {
+        if (isset($form_state->getValues()['access-control']['children-nodes']['<strong>Override</strong>']) && $form_state->getValues()['access-control']['children-nodes']['<strong>Override</strong>'] == true) {
             // Override the access control for already set media
             $override_childnodes = array_values(array_filter($form_state->getValues()['access-control']['children-nodes']['not-access-control']));
             foreach ($override_childnodes as $cnid) {
