@@ -5,7 +5,6 @@ core_version_requirement: ^8.8 || ^9 || ^10
 dependencies:
   - group
   - groupmedia
-  - group_permissions
   - field_permissions
   - media
   - taxonomy
