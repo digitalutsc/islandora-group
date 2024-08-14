@@ -742,7 +742,7 @@ class Utilities
         $group_ids[] = $rel->getGroup()->label();
       }
     }
-    
+
     // if the above approach is not effective
     if (count($group_ids) == 0) {
       $node = \Drupal\node\Entity\Node::load($nid);
@@ -781,12 +781,11 @@ class Utilities
       $storage = \Drupal::entityTypeManager()->getStorage('group_relationship');
       $relations = $storage->loadByEntity($media);
       foreach ($relations as $rel) {
-        if ($rel->getEntity()->getEntityTypeId() == 'node') {
+        if ($rel->getEntity()->getEntityTypeId() == 'media') {
           $group_ids[] = $rel->getGroup()->label();
         }
       }
     }
-    
     return $group_ids;
   }
 }
