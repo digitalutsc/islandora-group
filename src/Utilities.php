@@ -736,11 +736,22 @@ class Utilities
       ->condition('entity_id', $nid)
       ->accessCheck(TRUE)
       ->execute();
-
     $relations = \Drupal\group\Entity\GroupRelationship::loadMultiple($ids);
     foreach ($relations as $rel) {
       if ($rel->getEntity()->getEntityTypeId() == 'node') {
         $group_ids[] = $rel->getGroup()->label();
+      }
+    }
+    
+    // if the above approach is not effective
+    if (count($group_ids) == 0) {
+      $node = \Drupal\node\Entity\Node::load($nid);
+      $storage = \Drupal::entityTypeManager()->getStorage('group_relationship');
+      $relations = $storage->loadByEntity($node);
+      foreach ($relations as $rel) {
+        if ($rel->getEntity()->getEntityTypeId() == 'node') {
+          $group_ids[] = $rel->getGroup()->label();
+        }
       }
     }
     return $group_ids;
@@ -763,6 +774,19 @@ class Utilities
         $group_ids[] = $rel->getGroup()->label();
       }
     }
+
+    // if the above approach is not effective
+    if (count($group_ids) == 0) {
+      $media = \Drupal\media\Entity\Media::load($mid);
+      $storage = \Drupal::entityTypeManager()->getStorage('group_relationship');
+      $relations = $storage->loadByEntity($media);
+      foreach ($relations as $rel) {
+        if ($rel->getEntity()->getEntityTypeId() == 'node') {
+          $group_ids[] = $rel->getGroup()->label();
+        }
+      }
+    }
+    
     return $group_ids;
   }
 }
